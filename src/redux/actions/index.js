@@ -2,7 +2,7 @@ export const GET_SONGS = 'GET_SONGS'
 export const GET_SEARCH = 'GET_SEARCH'
 
 export const getSongsAction = () => {
-  return async (dispatch) => {
+  return (dispatch) => {
     fetch('https://striveschool-api.herokuapp.com/api/deezer/search?q=queen', {
       headers: {
         'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',

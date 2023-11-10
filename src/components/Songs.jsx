@@ -1,19 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { getSongsAction } from '../redux/actions'
 
 const Songs = () => {
-  const [songs, setSongs] = useState(null)
-  const dispatch = useDispatch()
   const songsFromReduxStore = useSelector((state) => state.song.tracks)
-  console.log(songsFromReduxStore)
+
+  const dispatch = useDispatch()
   useEffect(() => {
     dispatch(getSongsAction())
   }, [])
-
-  const changeSong = (songs) => setSongs(songs)
-
+  console.log(songsFromReduxStore)
   return (
     <Container>
       <Row>
@@ -25,7 +22,7 @@ const Songs = () => {
                 className="row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
                 id="rockSection"
               >
-                {songsFromReduxStore.data.slice(0, 4).map((song, i) => {
+                {/* {songsFromReduxStore.data.slice(0, 4).map((song, i) => {
                   return (
                     <div className="text-center" key={song.id}>
                       <img src={song.album.cover_medium} alt="track" />
@@ -38,7 +35,7 @@ const Songs = () => {
                       <p>Artist: {song.artist.name}</p>
                     </div>
                   )
-                })}
+                })} */}
               </Row>
             )}
           </div>
@@ -51,7 +48,7 @@ const Songs = () => {
                 className="row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
                 id="popSection"
               >
-                {songsFromReduxStore.data.slice(0, 4).map((song, i) => {
+                {/* {songsFromReduxStore.data.slice(0, 4).map((song, i) => {
                   return (
                     <div className="text-center" key={song.id}>
                       <img src={song.album.cover_medium} alt="track" />
@@ -64,7 +61,7 @@ const Songs = () => {
                       <p>Artist: {song.artist.name}</p>
                     </div>
                   )
-                })}
+                })} */}
               </Row>
             )}
           </div>
@@ -77,7 +74,7 @@ const Songs = () => {
                 className="row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
                 id="hipHopSection"
               >
-                {songsFromReduxStore.data.slice(0, 4).map((song, i) => {
+                {/* {songsFromReduxStore.data.slice(0, 4).map((song, i) => {
                   return (
                     <div className="text-center" key={song.id}>
                       <img src={song.album.cover_medium} alt="track" />
@@ -90,7 +87,7 @@ const Songs = () => {
                       <p>Artist: {song.artist.name}</p>
                     </div>
                   )
-                })}
+                })} */}
               </Row>
             )}
           </div>
