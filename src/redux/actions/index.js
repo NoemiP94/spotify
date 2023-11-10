@@ -1,8 +1,7 @@
-export const GET_ROCK_SONGS = 'GET_ROCK_SONGS'
+export const GET_SONGS = 'GET_SONGS'
 export const GET_SEARCH = 'GET_SEARCH'
-export const GET_POP_SONGS = 'GET_POP_SONGS'
 
-export const getRockSongsAction = () => {
+export const getSongsAction = () => {
   return async (dispatch) => {
     fetch('https://striveschool-api.herokuapp.com/api/deezer/search?q=queen', {
       headers: {
@@ -19,7 +18,7 @@ export const getRockSongsAction = () => {
       })
       .then((songs) => {
         dispatch({
-          type: GET_ROCK_SONGS,
+          type: GET_SONGS,
           payload: songs,
         })
         console.log(songs)
