@@ -4,16 +4,17 @@ import { BookFill, HouseFill } from 'react-bootstrap-icons'
 import { useDispatch } from 'react-redux'
 import { getSearchAction } from '../redux/actions'
 
-const Navbar = () => {
+const Navbar = ({ onSearchResults }) => {
   const [query, setQuery] = useState('')
   const dispatch = useDispatch()
-  const handleChange = (e) => {
-    setQuery(e.target.value)
-  }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    dispatch(getSearchAction(query))
+    if (query.trim() !== '') {
+      const results = await getSearchAction(query)
+      onSearchResults(results)
+      console.log(query)
+    }
   }
   return (
     <Container fluid>
@@ -70,14 +71,17 @@ const Navbar = () => {
                         onSubmit={handleSubmit}
                       >
                         <input
-                          type="search"
+                          type="text"
                           className="form-control"
                           id="searchField"
                           placeholder="Search"
                           aria-label="Search"
                           aria-describedby="basic-addon2"
                           value={query}
-                          onChange={handleChange}
+                          onChange={(e) => {
+                            setQuery(e.target.value)
+                            console.log(query)
+                          }}
                         />
                         <div className="input-group-append">
                           <button

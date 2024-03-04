@@ -2,7 +2,7 @@ import { Col, Container, Row } from 'react-bootstrap'
 import UpperBar from './UpperBar'
 import Songs from './Songs'
 
-const Main = () => {
+const Main = ({ searchResults }) => {
   return (
     <Container>
       <Row>
@@ -10,7 +10,7 @@ const Main = () => {
           <UpperBar />
         </Col>
         <Col>
-          <Songs />
+          <Songs searchResults={searchResults} />
         </Col>
       </Row>
     </Container>

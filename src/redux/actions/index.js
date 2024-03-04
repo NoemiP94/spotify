@@ -35,7 +35,7 @@ export const getSearchAction = (query) => {
   return async (dispatch) => {
     try {
       const response = await fetch(
-        'https://striveschool-api.herokuapp.com/api/deezer/search?q=' + query,
+        `https://striveschool-api.herokuapp.com/api/deezer/search?q=${query}`,
         {
           headers: {
             'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
@@ -45,10 +45,11 @@ export const getSearchAction = (query) => {
         }
       )
       if (response.ok) {
-        const { dataSearch } = await response.json()
+        const { data } = await response.json()
+        console.log(data)
         dispatch({
           type: GET_SEARCH,
-          payload: dataSearch,
+          payload: data,
         })
       } else {
         throw new Error('Errore nel recupero dei dati')

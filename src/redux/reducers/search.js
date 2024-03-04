@@ -8,7 +8,7 @@ const searchReducer = (state = initialState, action) => {
     case GET_SEARCH:
       return {
         ...state,
-        content: action.payload,
+        content: [action.payload],
       }
     default:
       return state
