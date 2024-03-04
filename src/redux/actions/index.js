@@ -1,31 +1,33 @@
 export const GET_SONGS = 'GET_SONGS'
 export const GET_SEARCH = 'GET_SEARCH'
 
-export const getSongsAction = () => {
-  return (dispatch) => {
-    fetch('https://striveschool-api.herokuapp.com/api/deezer/search?q=queen', {
-      headers: {
-        'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
-        'X-RapidAPI-Key': '9d408f0366mshab3b0fd8e5ecdf7p1b09f2jsne682a1797fa0',
-      },
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json()
-        } else {
-          throw new Error('Errore nel recupero dei dati')
+export const getSongsAction = (playlist) => {
+  return async (dispatch) => {
+    try {
+      const res = await fetch(
+        `https://striveschool-api.herokuapp.com/api/deezer/search?q=${playlist}`,
+        {
+          headers: {
+            'X-RapidAPI-Host': 'deezerdevs-deezer.p.rapidapi.com',
+            'X-RapidAPI-Key':
+              '9d408f0366mshab3b0fd8e5ecdf7p1b09f2jsne682a1797fa0',
+          },
         }
-      })
-      .then((songs) => {
+      )
+      if (res.ok) {
+        const { data } = await res.json()
+        console.log(data)
         dispatch({
           type: GET_SONGS,
-          payload: songs,
+          payload: data,
         })
-        console.log(songs)
-      })
-      .catch((err) => {
-        console.log('Errore', err)
-      })
+        console.log('Playlist has been load correctly')
+      } else {
+        throw new Error('Playlist is fail!')
+      }
+    } catch (error) {
+      console.log('Errore', error)
+    }
   }
 }
 
